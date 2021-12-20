@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MiSA.Fresher.Amis.Core\MiSA.Fresher.Amis.Core.csproj" />
+    <ProjectReference Include="..\MISA.Fresher.Amis.Infrastructure\MISA.Fresher.Amis.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

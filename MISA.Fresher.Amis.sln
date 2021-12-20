@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MISA.Fresher.Amis.Api", "MISA.Fresher.Amis.Api\MISA.Fresher.Amis.Api.csproj", "{3721147A-CBFA-4C69-BCD6-37A7F060F686}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiSA.Fresher.Amis.Core", "MiSA.Fresher.Amis.Core\MiSA.Fresher.Amis.Core.csproj", "{B6C18556-B692-4C5E-97E8-4E0F0CF2AD2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MISA.Fresher.Amis.Infrastructure", "MISA.Fresher.Amis.Infrastructure\MISA.Fresher.Amis.Infrastructure.csproj", "{AEB51814-63B4-433C-BE1F-8FC338122F89}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DBA37C43-DAA3-4557-B676-EF9FCB3695AF}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3721147A-CBFA-4C69-BCD6-37A7F060F686}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3721147A-CBFA-4C69-BCD6-37A7F060F686}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3721147A-CBFA-4C69-BCD6-37A7F060F686}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3721147A-CBFA-4C69-BCD6-37A7F060F686}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6C18556-B692-4C5E-97E8-4E0F0CF2AD2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6C18556-B692-4C5E-97E8-4E0F0CF2AD2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6C18556-B692-4C5E-97E8-4E0F0CF2AD2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6C18556-B692-4C5E-97E8-4E0F0CF2AD2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEB51814-63B4-433C-BE1F-8FC338122F89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEB51814-63B4-433C-BE1F-8FC338122F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEB51814-63B4-433C-BE1F-8FC338122F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEB51814-63B4-433C-BE1F-8FC338122F89}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B39DC639-57B8-4497-B5BE-455FC276F075}
+	EndGlobalSection
+EndGlobal
