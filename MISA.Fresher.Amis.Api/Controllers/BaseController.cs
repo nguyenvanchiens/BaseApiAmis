@@ -14,7 +14,7 @@ namespace MISA.Fresher.Amis.Api.Controllers
             _baseService = baseService;
         }
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult Get()
         {
             try
             {
@@ -26,7 +26,7 @@ namespace MISA.Fresher.Amis.Api.Controllers
             }
         }
         [HttpGet("{entityId}")]
-        public IActionResult GetAll(Guid entityId)
+        public IActionResult Get(Guid entityId)
         {
             try
             {

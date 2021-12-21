@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
+using MiSA.Fresher.Amis.Core.Common;
 using MiSA.Fresher.Amis.Core.Entities;
 using MiSA.Fresher.Amis.Core.InterFace.Repository;
 using System;
@@ -13,17 +14,31 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
 {
     public class EmployeeRepository : BaseRepository<Employee>, IEmployeeRepository
     {
+        #region Contructor
         public EmployeeRepository(IConfiguration configuration):base(configuration)
         {
 
         }
-        public object GetPaging(int limit, int offset)
+        #endregion
+        #region Method
+        public object GetPaging(PageRequestBase pageRequest)
         {
-            var parama = new DynamicParameters();
-            parama.Add("limit", limit);
-            parama.Add("offset", offset);
-            var result = _dbConnection.Query<Employee>($"Proc_GetAllPaging", param: parama, commandType: CommandType.StoredProcedure);
-            return result;
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@EmployeeFilter", pageRequest.entityFilter);
+            parameters.Add("@PageSize", pageRequest.pageSize);
+            parameters.Add("@PageIndex", pageRequest.pageIndex);
+            parameters.Add("@TotalRecord", direction: ParameterDirection.Output);
+            parameters.Add("@TotalPage", direction: ParameterDirection.Output);
+            var result = _dbConnection.Query<Employee>($"Proc_GetEmployeePaging", param: parameters, commandType: CommandType.StoredProcedure);
+            var TotalRecord = parameters.Get<int>("@TotalRecord");
+            var TotalPage = parameters.Get<int>("@TotalPage");
+            return new
+            {
+                totalRecord = TotalRecord,
+                totalPage = TotalPage,
+                Data = result
+            };
         }
+        #endregion
     }
 }

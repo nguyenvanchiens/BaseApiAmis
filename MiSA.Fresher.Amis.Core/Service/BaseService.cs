@@ -14,11 +14,16 @@ namespace MiSA.Fresher.Amis.Core.Service
 {
     public class BaseService<TEntity> : IBaseService<TEntity>
     {
+        #region initialization
         IBaseRepository<TEntity> _baseRepository;
+        #endregion
+        #region Contructor
         public BaseService(IBaseRepository<TEntity> baseRepository)
         {
             _baseRepository = baseRepository;
         }
+        #endregion
+        #region Method
         public virtual int Delete(Guid entityId)
         {
             var rowAffect = _baseRepository.Delete(entityId);
@@ -66,6 +71,7 @@ namespace MiSA.Fresher.Amis.Core.Service
             }
             return null;
         }
+        #endregion
         #region Validate
         /// <summary>
         /// Thực hiện validate dùng chung

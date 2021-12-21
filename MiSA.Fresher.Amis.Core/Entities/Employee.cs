@@ -132,5 +132,5 @@ namespace MiSA.Fresher.Amis.Core.Entities
         /// Ngày sửa
         /// </summary>
         public DateTime? ModifiedDate  { get; set; }
-}
+    }
 }

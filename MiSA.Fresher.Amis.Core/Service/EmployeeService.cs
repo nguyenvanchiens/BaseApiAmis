@@ -1,4 +1,5 @@
 ﻿using MiSA.Fresher.Amis.Core.Attributes;
+using MiSA.Fresher.Amis.Core.Common;
 using MiSA.Fresher.Amis.Core.Entities;
 using MiSA.Fresher.Amis.Core.Exceptions;
 using MiSA.Fresher.Amis.Core.InterFace.Repository;
@@ -13,16 +14,27 @@ namespace MiSA.Fresher.Amis.Core.Service
 {
     public class EmployeeService : BaseService<Employee>, IEmployeeService
     {
+        #region initialization
         IEmployeeRepository _employeeRepository;
+        #endregion
+        #region Contructor
         public EmployeeService(IEmployeeRepository employeeRepository):base(employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
-        public object GetPaging(int limit, int offset)
+        #endregion
+        #region Method
+        public object GetPaging(PageRequestBase pageRequest)
         {
-            var result = _employeeRepository.GetPaging(limit, offset);
-            return result;
+            return _employeeRepository.GetPaging(pageRequest);
         }
+        #endregion
+        #region Design
+        /// <summary>
+        /// Custom lại validate bên hàm cha nếu thêm thuộc tính mới
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         protected override bool ValidateObjectCustom(Employee entity)
         {
             List<string> errorMsg = new List<string> { };
@@ -50,9 +62,10 @@ namespace MiSA.Fresher.Amis.Core.Service
             }
             if(errorMsg.Count > 0)
             {
-                return true;
+                throw new HttpResponseException(errorMsg);
             }
             return true;
         }
+        #endregion
     }
 }

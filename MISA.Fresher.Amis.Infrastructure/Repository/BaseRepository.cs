@@ -13,10 +13,13 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity>
     {
+        #region initialization
         IConfiguration _configuration;
         protected IDbConnection _dbConnection;
         private readonly string _connectionString = string.Empty;
         protected readonly string _tableName = string.Empty;
+        #endregion
+        #region Contructor
         public BaseRepository(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -24,11 +27,13 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
             _dbConnection = new MySqlConnection(_connectionString);
             _tableName = typeof(TEntity).Name;
         }
+        #endregion
+        #region Method
         public int Delete(Guid entityId)
         {
             var paramas = new DynamicParameters();
-            paramas.Add($"@m_{_tableName}Id",entityId);
-            var rowAffect = _dbConnection.Execute($"Proc_Delete{_tableName}", param: paramas, commandType: CommandType.StoredProcedure);
+            paramas.Add($"@{_tableName}Id",entityId);
+            var rowAffect = _dbConnection.Execute($"Proc_Delete{_tableName}ById", param: paramas, commandType: CommandType.StoredProcedure);
             return rowAffect;
         }
 
@@ -49,7 +54,7 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
         public int Insert(TEntity entity)
         {
             var param = MappingType(entity);
-            var rowAffect = _dbConnection.Execute($"Proc_Inserts{_tableName}", param: param, commandType: CommandType.StoredProcedure);
+            var rowAffect = _dbConnection.Execute($"Proc_Insert{_tableName}", param: param, commandType: CommandType.StoredProcedure);
             return rowAffect;
         }
 
@@ -60,6 +65,13 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
             var rowAffect = _dbConnection.Execute($"Proc_Update{_tableName}", param: parameters, commandType: CommandType.StoredProcedure);
             return rowAffect;
         }
+#endregion
+        #region design
+        /// <summary>
+        /// Chuyển đổi enity về 1 mảng đối tượng @...
+        /// </summary>
+        /// <param name="entity">đối tượng</param>
+        /// <returns>Trả về 1 DynamicParameters</returns>
         private DynamicParameters MappingType(TEntity entity)
         {
             //Lấy ra tất cả các property của class gọi đến
@@ -85,12 +97,19 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
             }
             return paramenters;
         }
-
+        /// <summary>
+        /// Kiểm tra tồn tại đối tượng dưới databse
+        /// </summary>
+        /// <param name="propertyName">entity cần kiểm tra</param>
+        /// <param name="propertyValue">Dữ liệu entity</param>
+        /// <returns>Trả về đối tượng nếu tồn tại</returns>
+        /// CreateBy: NVChien(20/12/2021)
         public TEntity GetEntityByProperty(string propertyName, object propertyValue)
         {
             var query = $"Select*from {_tableName} where {propertyName} = '{propertyValue}'";
             var entity = _dbConnection.QueryFirstOrDefault<TEntity>(query, commandType: CommandType.Text);
             return entity;
         }
+        #endregion
     }
 }

@@ -13,6 +13,7 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Service
     /// CreateBy: NVChien(20/12/2021)
     public interface IBaseService<TEntity>
     {
+        #region Method
         /// <summary>
         /// Lấy toàn bộ danh sách
         /// </summary>
@@ -47,6 +48,7 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Service
         /// <returns>Trả về số bản ghi bị ảnh hưởng</returns>
         /// CreateBy: NVChien(20/12/2021)
         int Delete(Guid entityId);
+        #endregion
 
     }
 }

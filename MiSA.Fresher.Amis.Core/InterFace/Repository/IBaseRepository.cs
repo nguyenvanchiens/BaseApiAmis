@@ -14,6 +14,7 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Repository
     /// CreateBy: NVChien(20/12/2021)
     public interface IBaseRepository<TEntity>
     {
+        #region Method
         /// <summary>
         /// Lấy toàn bộ danh sách
         /// </summary>
@@ -56,5 +57,6 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Repository
         /// <returns>trả về đối tượng thì sai, k thì đúng</returns>
         /// CreateBy: NVChien(20/12/2021)
         TEntity GetEntityByProperty(string propertyName, object propertyValue);
+        #endregion
     }
 }
