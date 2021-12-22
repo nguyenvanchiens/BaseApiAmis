@@ -27,6 +27,11 @@ namespace MiSA.Fresher.Amis.Core.Attributes
             this.Length = length;
         }
     }
+    [AttributeUsage(AttributeTargets.Property)]
+    public class PrimaryKey : Attribute
+    {
+
+    }
     /// <summary>
     /// Attribute check trùng cho property
     /// </summary>

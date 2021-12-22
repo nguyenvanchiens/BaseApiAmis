@@ -15,6 +15,8 @@ namespace MiSA.Fresher.Amis.Core.Entities
         /// Id nhân viên
         /// </summary>
         /// CreateBy: NVChien(20/12/2021)
+        /// 
+        [PrimaryKey]
         public Guid EmployeeId { get; set; }
         /// <summary>
         /// Mã nhân viên
@@ -31,13 +33,14 @@ namespace MiSA.Fresher.Amis.Core.Entities
         /// CreateBy: NVChien(20/12/2021)
         /// 
         [NotEmpty]
+        [PropertyName("Tên nhân viên")]
         public string? EmployeeName { get; set; }
         public DateTime? DateOfBirth { get; set; }
         /// <summary>
         /// Giới tính
         /// </summary>
         /// CreateBy: NVChien(20/12/2021)
-        public Gender Gender { get; set; }
+        public int Gender { get; set; }
         /// <summary>
         /// Mã phòng ban
         /// </summary>

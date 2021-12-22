@@ -65,7 +65,7 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
             var rowAffect = _dbConnection.Execute($"Proc_Update{_tableName}", param: parameters, commandType: CommandType.StoredProcedure);
             return rowAffect;
         }
-#endregion
+        #endregion
         #region design
         /// <summary>
         /// Chuyển đổi enity về 1 mảng đối tượng @...
@@ -106,6 +106,7 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
         /// CreateBy: NVChien(20/12/2021)
         public TEntity GetEntityByProperty(string propertyName, object propertyValue)
         {
+            //truyền vào id để kiểm tra mã đó của id đó, nếu khác mới kiểm tra
             var query = $"Select*from {_tableName} where {propertyName} = '{propertyValue}'";
             var entity = _dbConnection.QueryFirstOrDefault<TEntity>(query, commandType: CommandType.Text);
             return entity;

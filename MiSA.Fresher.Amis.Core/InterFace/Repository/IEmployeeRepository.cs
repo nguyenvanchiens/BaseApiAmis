@@ -19,5 +19,11 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Repository
         /// <returns>Trả về danh sách với số bản ghi</returns>
         /// CreateBy: NVChien(20/12/2021)
         object GetPaging(PageRequestBase pageRequest);
+        /// <summary>
+        /// Xóa danh sách nhân viên theo id
+        /// </summary>
+        /// <param name="listId">danh sách id</param>
+        /// <returns></returns>
+        int DeleteMultiRecord(List<string> listId);
     }
 }

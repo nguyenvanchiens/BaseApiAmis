@@ -18,9 +18,22 @@ namespace MISA.Fresher.Amis.Api.Controllers
         {
             try
             {
-                var result = _employeeService.GetPaging(pageRequest);
+               var result = _employeeService.GetPaging(pageRequest);
                 return Ok(result);
             }catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpDelete("DeleteMulti")]
+        public IActionResult DeleteMulti([FromBody] List<string> listId)
+        {
+            try
+            {
+                var result = _employeeService.DeleteMultiRecord(listId);
+                return Ok(result);
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }

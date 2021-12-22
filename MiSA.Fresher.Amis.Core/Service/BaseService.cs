@@ -61,12 +61,17 @@ namespace MiSA.Fresher.Amis.Core.Service
 
         public virtual int? Update(Guid entityId, TEntity entity)
         {
+
             // validate chung - base xử lý
             var isValid = ValidateObject(entity);
             // Validate đặc thù từng đối tượng
             if (isValid == true)
             {
-                var rowAffect = _baseRepository.Update(entityId,entity);
+                isValid = ValidateObjectCustom(entity);
+            }
+            if (isValid == true)
+            {
+                var rowAffect = _baseRepository.Update(entityId, entity);
                 return rowAffect;
             }
             return null;

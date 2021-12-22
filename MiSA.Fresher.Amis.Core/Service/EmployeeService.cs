@@ -22,6 +22,7 @@ namespace MiSA.Fresher.Amis.Core.Service
         {
             _employeeRepository = employeeRepository;
         }
+
         #endregion
         #region Method
         public object GetPaging(PageRequestBase pageRequest)
@@ -29,6 +30,10 @@ namespace MiSA.Fresher.Amis.Core.Service
             return _employeeRepository.GetPaging(pageRequest);
         }
         #endregion
+        public int DeleteMultiRecord(List<string> listId)
+        {
+            return _employeeRepository.DeleteMultiRecord(listId);
+        }
         #region Design
         /// <summary>
         /// Custom lại validate bên hàm cha nếu thêm thuộc tính mới
