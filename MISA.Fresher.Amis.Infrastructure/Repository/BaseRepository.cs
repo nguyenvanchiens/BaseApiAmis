@@ -104,12 +104,16 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
         /// <param name="propertyValue">Dữ liệu entity</param>
         /// <returns>Trả về đối tượng nếu tồn tại</returns>
         /// CreateBy: NVChien(20/12/2021)
-        public TEntity GetEntityByProperty(string propertyName, object propertyValue)
+        public TEntity GetEntityByProperty(Guid entityId, string propertyName, object propertyValue)
         {
             //truyền vào id để kiểm tra mã đó của id đó, nếu khác mới kiểm tra
-            var query = $"Select*from {_tableName} where {propertyName} = '{propertyValue}'";
-            var entity = _dbConnection.QueryFirstOrDefault<TEntity>(query, commandType: CommandType.Text);
-            return entity;
+            // Kiểm tra mã nhân viên và số điện thoại nhân viên có bị trùng không, nhưng với điều kiện nó khác với id ban đầu
+            // Khi update entityId ban đầu đã có nên chỉ kiểm tra nếu có thay đổi trường đó, còn k thì của nó ban đầu kệ nó
+            
+            // Khi thêm mới entityId đã được tạo mới
+            var query = $"Select*from {_tableName} where {propertyName} = '{propertyValue}' and {_tableName}Id != '{entityId}'";
+            var entityy = _dbConnection.QueryFirstOrDefault<TEntity>(query, commandType: CommandType.Text);
+            return entityy;
         }
         #endregion
     }

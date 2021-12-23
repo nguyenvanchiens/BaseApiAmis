@@ -54,6 +54,12 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
                 Data = result
             };
         }
+
+        public string NewCodeEmployee()
+        {
+            var result = _dbConnection.QueryFirstOrDefault<string>($"Proc_GetNew{_tableName}Code",commandType:CommandType.StoredProcedure);
+            return result;
+        }
         #endregion
     }
 }

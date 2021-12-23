@@ -40,7 +40,28 @@ namespace MiSA.Fresher.Amis.Core.Entities
         /// Giới tính
         /// </summary>
         /// CreateBy: NVChien(20/12/2021)
-        public int Gender { get; set; }
+        public Gender Gender { get; set; }
+        /// <summary>
+        /// Lấy ra giới tính dựa vào tên
+        /// </summary>
+        /// CreateBy: NVChien(20/12/2021)
+        public string GenderName
+        {
+            get
+            {
+                switch (Gender)
+                {
+                    case Gender.Male:
+                        return "Nữ";
+                        case Gender.Female:
+                        return "Nam";
+                    case Gender.Other:
+                        return "Khác";
+                        default: return null;
+                }
+            }
+
+        }
         /// <summary>
         /// Mã phòng ban
         /// </summary>

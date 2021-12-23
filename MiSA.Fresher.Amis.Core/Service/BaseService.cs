@@ -71,7 +71,7 @@ namespace MiSA.Fresher.Amis.Core.Service
             }
             if (isValid == true)
             {
-                var rowAffect = _baseRepository.Update(entityId, entity);
+                var rowAffect = _baseRepository.Update(entityId,entity);
                 return rowAffect;
             }
             return null;
@@ -100,7 +100,7 @@ namespace MiSA.Fresher.Amis.Core.Service
                 // lấy ra các trường không được trống
                 var proNotEmptys = property.GetCustomAttributes(typeof(NotEmpty), true);
                 // Lấy ra độ dài của kí tự của property
-                var propertyMaxLength = property.GetCustomAttributes(typeof(MaxLength), true);              
+                var propertyMaxLength = property.GetCustomAttributes(typeof(MaxLength), true);               
                 // Xem các property đó có có tồn tại PropertyName không
                 if (propertyNames.Length > 0)
                 {
