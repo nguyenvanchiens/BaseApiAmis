@@ -56,13 +56,29 @@ namespace MiSA.Fresher.Amis.Core.Service
                     propertyNameOriginal = ((PropertyName)propertyNames[0]).Name;
                 }
                 var propertyDuplicate = property.GetCustomAttributes(typeof(CheckDuplicate), true);
+                
                 if (propertyDuplicate.Length > 0)
                 {
-                    var checkDuplicate = _employeeRepository.GetEntityByProperty(entity.EmployeeId,property.Name, propertyValue);
-                    if (checkDuplicate != null)
+                    if (propertyValue != null)
                     {
-                        errorMsg.Add($"Dữ liệu {propertyNameOriginal} đã tồn tại trong cơ sở");
+                        var checkDuplicate = _employeeRepository.GetDuplicateProperty(entity.EmployeeId, property.Name, propertyValue);
+                        if (checkDuplicate != null)
+                        {
+                            errorMsg.Add($"Dữ liệu {propertyNameOriginal} đã tồn tại trong cơ sở");
+                        }
                     }
+                   
+                }
+                var checkDate = property.GetCustomAttributes(typeof(checkDate), true);
+                if (checkDate.Length > 0)
+                {
+                    if (propertyValue != null)
+                    {
+                        if ((DateTime)propertyValue > DateTime.Now)
+                        {
+                            errorMsg.Add($"{propertyNameOriginal} lớn hơn ngày hiện tại vô lý");
+                        }
+                    }               
                 }
             }
             if (errorMsg.Count > 0)

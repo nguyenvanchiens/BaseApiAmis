@@ -23,6 +23,7 @@ namespace MiSA.Fresher.Amis.Core.Exceptions
                     devMsg = Properties.VNResources.BadRequest,
                     userMgs = Properties.VNResources.ExceptionError,
                     data = httpResponseException.Value,
+                    status = 400,
                     moreInfo = ""
                 };
                 context.Result = new ObjectResult(result)

@@ -56,7 +56,7 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Repository
         /// <param name="propertyValue">Giá trị</param>
         /// <returns>trả về đối tượng thì sai, k thì đúng</returns>
         /// CreateBy: NVChien(20/12/2021)
-        TEntity GetEntityByProperty(Guid entityId, string propertyName, object propertyValue);
+        TEntity GetDuplicateProperty(Guid entityId, string propertyName, object propertyValue);
         #endregion
     }
 }

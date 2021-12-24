@@ -26,7 +26,7 @@ namespace MISA.Fresher.Amis.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpDelete("DeleteMulti")]
+        [HttpPost("DeleteMulti")]
         public IActionResult DeleteMulti([FromBody] List<string> listId)
         {
             try

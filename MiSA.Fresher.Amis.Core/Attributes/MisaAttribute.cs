@@ -55,4 +55,9 @@ namespace MiSA.Fresher.Amis.Core.Attributes
             this.Name = name;
         }
     }
+    [AttributeUsage(AttributeTargets.Property)]
+    public class checkDate : Attribute
+    {
+
+    }
 }

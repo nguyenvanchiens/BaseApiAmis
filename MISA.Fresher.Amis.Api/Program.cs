@@ -3,6 +3,7 @@ using MiSA.Fresher.Amis.Core.InterFace.Repository;
 using MiSA.Fresher.Amis.Core.InterFace.Service;
 using MiSA.Fresher.Amis.Core.Service;
 using MISA.Fresher.Amis.Infrastructure.Repository;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add<HttpResponseExceptionFilter>();
+}).AddJsonOptions(opt =>
+{
+    opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

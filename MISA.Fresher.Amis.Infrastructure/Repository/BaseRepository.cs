@@ -104,7 +104,7 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
         /// <param name="propertyValue">Dữ liệu entity</param>
         /// <returns>Trả về đối tượng nếu tồn tại</returns>
         /// CreateBy: NVChien(20/12/2021)
-        public TEntity GetEntityByProperty(Guid entityId, string propertyName, object propertyValue)
+        public TEntity GetDuplicateProperty(Guid entityId, string propertyName, object propertyValue)
         {
             //truyền vào id để kiểm tra mã đó của id đó, nếu khác mới kiểm tra
             // Kiểm tra mã nhân viên và số điện thoại nhân viên có bị trùng không, nhưng với điều kiện nó khác với id ban đầu

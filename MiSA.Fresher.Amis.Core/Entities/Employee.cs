@@ -35,6 +35,8 @@ namespace MiSA.Fresher.Amis.Core.Entities
         [NotEmpty]
         [PropertyName("Tên nhân viên")]
         public string? EmployeeName { get; set; }
+        [checkDate]
+        [PropertyName("Ngày sinh")]
         public DateTime? DateOfBirth { get; set; }
         /// <summary>
         /// Giới tính
@@ -68,7 +70,8 @@ namespace MiSA.Fresher.Amis.Core.Entities
         /// CreateBy: NVChien(20/12/2021)
         /// 
         [NotEmpty]
-        public Guid DepartmentId { get; set; }
+        [PropertyName("Mã phòng ban")]
+        public Guid? DepartmentId { get; set; }
         /// <summary>
         /// Căn cước công dân
         /// </summary>
