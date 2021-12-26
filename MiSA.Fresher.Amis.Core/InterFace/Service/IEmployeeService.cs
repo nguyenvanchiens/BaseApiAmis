@@ -25,11 +25,6 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Service
         /// <param name="listId">danh sách id</param>
         /// <returns></returns>
         int DeleteMultiRecord(List<string> listId);
-        /// <summary>
-        /// Tạo ra mã nhân viên mới
-        /// </summary>
-        /// <returns>Mã nhân viên</returns>
-        /// CreateBy: NVChien(20/12/2021)
         string NewCodeEmployee();
     }
 }

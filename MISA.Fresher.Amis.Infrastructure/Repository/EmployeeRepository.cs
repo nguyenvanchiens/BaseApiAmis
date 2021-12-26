@@ -30,8 +30,8 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
             {
                 listid += id+",";
             }
-            //listid = listid.Substring(0, listid.Length - 1);
-            parameters.Add("@listId", string.Join(',',listId)); 
+            listid = listid.Substring(0, listid.Length - 1);
+            parameters.Add("@listId", listid); 
             var result = _dbConnection.Execute("Proc_DeleteMultipleRecordEmployee", param:parameters,commandType:CommandType.StoredProcedure);
             var count = result;
             return result;
@@ -39,14 +39,14 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
         public object GetPaging(PageRequestBase pageRequest)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@EmployeeFilter", pageRequest.entityFilter);
-            parameters.Add("@PageSize", pageRequest.pageSize);
-            parameters.Add("@PageIndex", pageRequest.pageIndex);
-            parameters.Add("@TotalRecord", direction: ParameterDirection.Output);
-            parameters.Add("@TotalPage", direction: ParameterDirection.Output);
-            var result = _dbConnection.Query<Employee>($"Proc_GetEmployeePaging", param: parameters, commandType: CommandType.StoredProcedure);
-            var TotalRecord = parameters.Get<int>("@TotalRecord");
-            var TotalPage = parameters.Get<int>("@TotalPage");
+            parameters.Add("@keySearch", pageRequest.entityFilter);
+            parameters.Add("@pageSize", pageRequest.pageSize);
+            parameters.Add("@pageIndex", pageRequest.pageIndex);
+            parameters.Add("@totalRecord", direction: ParameterDirection.Output);
+            parameters.Add("@totalPage", direction: ParameterDirection.Output);
+            var result = _dbConnection.Query<Employee>($"Proc_GetEtmployeePaging", param: parameters, commandType: CommandType.StoredProcedure);
+            var TotalRecord = parameters.Get<int>("@totalRecord");
+            var TotalPage = parameters.Get<int>("@totalPage");
             return new
             {
                 totalRecord = TotalRecord,

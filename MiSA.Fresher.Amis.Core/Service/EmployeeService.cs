@@ -34,6 +34,11 @@ namespace MiSA.Fresher.Amis.Core.Service
         {
             return _employeeRepository.DeleteMultiRecord(listId);
         }
+
+        public string NewCodeEmployee()
+        {
+            return _employeeRepository.NewCodeEmployee();
+        }
         #region Design
         /// <summary>
         /// Custom lại validate bên hàm cha nếu thêm thuộc tính mới
@@ -64,7 +69,7 @@ namespace MiSA.Fresher.Amis.Core.Service
                         var checkDuplicate = _employeeRepository.GetDuplicateProperty(entity.EmployeeId, property.Name, propertyValue);
                         if (checkDuplicate != null)
                         {
-                            errorMsg.Add($"Dữ liệu {propertyNameOriginal} đã tồn tại trong cơ sở");
+                            errorMsg.Add($"Dữ liệu {propertyNameOriginal} đã tồn tại");
                         }
                     }
                    
@@ -76,7 +81,7 @@ namespace MiSA.Fresher.Amis.Core.Service
                     {
                         if ((DateTime)propertyValue > DateTime.Now)
                         {
-                            errorMsg.Add($"{propertyNameOriginal} lớn hơn ngày hiện tại vô lý");
+                            errorMsg.Add($"{propertyNameOriginal} lớn không thể lớn hơn ngày hiện tại");
                         }
                     }               
                 }
@@ -86,11 +91,6 @@ namespace MiSA.Fresher.Amis.Core.Service
                 throw new HttpResponseException(errorMsg);
             }
             return true;
-        }
-
-        public string NewCodeEmployee()
-        {
-            return _employeeRepository.NewCodeEmployee();
         }
         #endregion
     }

@@ -11,9 +11,15 @@ namespace MiSA.Fresher.Amis.Core.Service
 {
     public class DepartmentService:BaseService<Department>,IDepartmentService
     {
+        private IDepartmentRepository _departmentRepository;
         public DepartmentService(IDepartmentRepository departmentRepository):base(departmentRepository)
         {
+            _departmentRepository = departmentRepository;
+        }
 
+        public IEnumerable<Department> FilterDepartment(string filterName)
+        {
+            return _departmentRepository.FilterDepartment(filterName);
         }
     }
 }

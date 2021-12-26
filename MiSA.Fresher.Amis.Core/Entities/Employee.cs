@@ -81,6 +81,9 @@ namespace MiSA.Fresher.Amis.Core.Entities
         /// Ngày cấp
         /// </summary>
         /// CreateBy: NVChien(20/12/2021)
+        /// 
+        [checkDate]
+        [PropertyName("Ngày cấp chứng minh dân")]
         public DateTime? IdentityDate { get; set; }
         /// <summary>
         /// Nơi cấp chứng minh thư nhân dân
@@ -121,7 +124,6 @@ namespace MiSA.Fresher.Amis.Core.Entities
         /// Số điện thoại di động
         /// </summary>
         /// CreateBy: NVChien(20/12/2021)
-        [CheckDuplicate]
         [PropertyName("Số điện thoại")]
         public string? PhoneNumber { get; set; }
         /// <summary>

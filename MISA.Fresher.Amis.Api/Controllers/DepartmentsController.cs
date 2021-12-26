@@ -8,9 +8,24 @@ namespace MISA.Fresher.Amis.Api.Controllers
 {
     public class DepartmentsController : BaseController<Department>
     {
+        private IDepartmentService _departmentsService;
         public DepartmentsController(IDepartmentService departmentService):base(departmentService)
         {
+            _departmentsService = departmentService;
+        }
+        [HttpGet("filter")]
+        public IActionResult Filter(string filter)
+        {
+            try
+            {
+                var result = _departmentsService.FilterDepartment(filter);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
 
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

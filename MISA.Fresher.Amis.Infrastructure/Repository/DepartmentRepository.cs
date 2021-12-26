@@ -17,5 +17,13 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
         {
 
         }
+
+        public IEnumerable<Department> FilterDepartment(string filterName)
+        {
+            DynamicParameters dynamicParameters = new DynamicParameters();
+            dynamicParameters.Add("@filterName",filterName);
+            var result = _dbConnection.Query<Department>("Proc_FilterDepartment",param:dynamicParameters,commandType:System.Data.CommandType.StoredProcedure);
+            return result;
+        }
     }
 }

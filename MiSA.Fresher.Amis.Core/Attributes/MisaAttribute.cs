@@ -33,7 +33,7 @@ namespace MiSA.Fresher.Amis.Core.Attributes
 
     }
     /// <summary>
-    /// Attribute check trùng cho property
+    /// Attribute khóa chính
     /// </summary>
     /// <summary>
     /// CreatedBy: NVChien(19/12/2021)
@@ -55,6 +55,10 @@ namespace MiSA.Fresher.Amis.Core.Attributes
             this.Name = name;
         }
     }
+    /// <summary>
+    /// Kiểm tra dữ liệu có lơn hơn ngày hiện tại
+    /// </summary>
+    /// CreatedBy: NVChien(19/12/2021)
     [AttributeUsage(AttributeTargets.Property)]
     public class checkDate : Attribute
     {

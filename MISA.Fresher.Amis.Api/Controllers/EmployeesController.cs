@@ -15,13 +15,14 @@ namespace MISA.Fresher.Amis.Api.Controllers
             _employeeService = employeeService;
         }
         [HttpGet("GetAllPaging")]
-        public IActionResult GetAllPaging([FromQuery] PageRequestBase pageRequest)
+        public IActionResult GetAllPagings([FromQuery] PageRequestBase pageRequest)
         {
             try
             {
-               var result = _employeeService.GetPaging(pageRequest);
+                var result = _employeeService.GetPaging(pageRequest);
                 return Ok(result);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
