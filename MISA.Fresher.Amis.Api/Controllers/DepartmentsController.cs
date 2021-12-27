@@ -14,7 +14,7 @@ namespace MISA.Fresher.Amis.Api.Controllers
             _departmentsService = departmentService;
         }
         [HttpGet("filter")]
-        public IActionResult Filter(string filter)
+        public IActionResult Filter([FromQuery]string? filter)
         {
             try
             {

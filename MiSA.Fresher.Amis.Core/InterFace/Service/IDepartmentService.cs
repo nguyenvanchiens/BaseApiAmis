@@ -15,6 +15,6 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Service
         /// <param name="filterName">Tên phòng ban</param>
         /// <returns>Trả về phòng ban tương ứng</returns>
         /// CreateBy:NvChien(26/12/2021)
-        IEnumerable<Department> FilterDepartment(string filterName);
+        IEnumerable<Department> FilterDepartment(string? filterName);
     }
 }

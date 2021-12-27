@@ -12,13 +12,12 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
 {
     public class DepartmentRepository:BaseRepository<Department>,IDepartmentRepository
     {
-        
         public DepartmentRepository(IConfiguration configuration):base(configuration)
         {
 
         }
 
-        public IEnumerable<Department> FilterDepartment(string filterName)
+        public IEnumerable<Department> FilterDepartment(string? filterName)
         {
             DynamicParameters dynamicParameters = new DynamicParameters();
             dynamicParameters.Add("@filterName",filterName);

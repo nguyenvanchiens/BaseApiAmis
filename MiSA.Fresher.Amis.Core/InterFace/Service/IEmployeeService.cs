@@ -26,5 +26,6 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Service
         /// <returns></returns>
         int DeleteMultiRecord(List<string> listId);
         string NewCodeEmployee();
+        bool ExportExcel();
     }
 }

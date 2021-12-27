@@ -17,7 +17,7 @@ namespace MiSA.Fresher.Amis.Core.Service
             _departmentRepository = departmentRepository;
         }
 
-        public IEnumerable<Department> FilterDepartment(string filterName)
+        public IEnumerable<Department> FilterDepartment(string? filterName)
         {
             return _departmentRepository.FilterDepartment(filterName);
         }

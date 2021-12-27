@@ -40,8 +40,7 @@ namespace MISA.Fresher.Amis.Api.Controllers
         }
         [HttpPost]
         public IActionResult Insert([FromBody] TEntity entity)
-        {
-          
+        {            
                 var reuslt = _baseService.Insert(entity);
                 return Ok(reuslt);
             

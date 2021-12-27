@@ -25,15 +25,8 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
         public int DeleteMultiRecord(List<string> listId)
         {
             DynamicParameters parameters = new DynamicParameters();
-            var listid = "";
-            foreach (string id in listId)
-            {
-                listid += id+",";
-            }
-            listid = listid.Substring(0, listid.Length - 1);
-            parameters.Add("@listId", listid); 
+            parameters.Add("@listId", string.Join(',', listId)); 
             var result = _dbConnection.Execute("Proc_DeleteMultipleRecordEmployee", param:parameters,commandType:CommandType.StoredProcedure);
-            var count = result;
             return result;
         }
         public object GetPaging(PageRequestBase pageRequest)

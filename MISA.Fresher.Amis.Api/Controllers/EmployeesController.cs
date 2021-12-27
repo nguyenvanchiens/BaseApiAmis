@@ -71,52 +71,41 @@ namespace MISA.Fresher.Amis.Api.Controllers
         [HttpGet("Export")]
         public IActionResult Export()
         {
-            var result = _employeeService.GetAll();
+
+            ////Format Ctrl+A -> Home -> Format -> Column(with, height)
+
             var stream = new MemoryStream();
-
-            //Format Ctrl+A -> Home -> Format -> Column(with, height)
-
-            using (var package = new ExcelPackage(stream))
+            var result = _employeeService.GetAll();
+            var filePath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\MiSA.Fresher.Amis.Core\ExcelTemplate\Danh_sach_nhan_vien.xlsx"));
+            FileInfo existingFile = new FileInfo(filePath);
+            ExcelPackage.LicenseContext = LicenseContext.Commercial;
+            // If you use EPPlus in a noncommercial context
+            // according to the Polyform Noncommercial license:
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using (ExcelPackage package = new ExcelPackage(existingFile))
             {
-                var sheet = package.Workbook.Worksheets.Add("NhanVien");
+                //get the first worksheet in the workbook
+                ExcelWorksheet sheet = package.Workbook.Worksheets[0];
                 // đổ dữ liệu vào sheet
-                sheet.Cells[1, 1].Value = "Mã Nhân Viên";
-                sheet.Cells[1, 2].Value = "Tên Nhân Viên";
-                sheet.Cells[1, 3].Value = "Ngày Sinh";
-                sheet.Cells[1, 4].Value = "Giới Tính";
-                sheet.Cells[1, 5].Value = "Căn Cước Công Dân";
-                sheet.Cells[1, 6].Value = "Nơi Cấp Chứng Minh Nhân Dân";
-                sheet.Cells[1, 7].Value = "Chức Danh";
-                sheet.Cells[1, 8].Value = "Địa Chỉ";
-                sheet.Cells[1, 9].Value = "Số Tài Khoản Ngân Hàng";
-                sheet.Cells[1, 10].Value = "Tên Khoản Ngân Hàng";
-                sheet.Cells[1, 11].Value = "Tên Ngân Hàng";
-                sheet.Cells[1, 12].Value = "Số điện thoại";
-                sheet.Cells[1, 13].Value = "Tên Phòng Ban";
-                sheet.Cells[1, 14].Value = "Email";
-                int rowId = 2;
-                foreach(var row in result)
+
+                int rowId = 4;
+                int stt = 1;
+                foreach (var row in result)
                 {
-                    sheet.Cells[rowId, 1].Value = row.EmployeeCode;
-                    sheet.Cells[rowId, 2].Value = row.EmployeeName;
-                    sheet.Cells[rowId, 3].Value = row.DateOfBirth;
-                    sheet.Cells[rowId, 4].Value =row.GenderName;
-                    sheet.Cells[rowId, 5].Value = row.IdentityNumber;
-                    sheet.Cells[rowId, 6].Value = row.IdentityPlace;
-                    sheet.Cells[rowId, 7].Value = row.EmployeePosition;
-                    sheet.Cells[rowId, 8].Value = row.Address;
-                    sheet.Cells[rowId, 9].Value = row.BankAccountNumber;
-                    sheet.Cells[rowId, 10].Value = row.BankName;
-                    sheet.Cells[rowId, 11].Value = row.BankBranchName;
-                    sheet.Cells[rowId, 12].Value = row.PhoneNumber;
-                    sheet.Cells[rowId, 13].Value = row.DepartmentName;
-                    sheet.Cells[rowId, 14].Value = row.Email;
+                    sheet.Cells[rowId,1].Value = stt;
+                    sheet.Cells[rowId, 2].Value = row.EmployeeCode;
+                    sheet.Cells[rowId, 3].Value = row.EmployeeName;
+                    sheet.Cells[rowId, 4].Value = row.GenderName;
+                    sheet.Cells[rowId, 5].Value = row.DateOfBirth;
+                    sheet.Cells[rowId, 6].Value = row.EmployeePosition;
+                    sheet.Cells[rowId, 7].Value = row.DepartmentName;
+                    sheet.Cells[rowId, 8].Value = row.BankAccountNumber;
+                    sheet.Cells[rowId, 9].Value = row.BankName;
+                    stt++;
                     rowId++;
                 }
-                //save
-                package.Save();
+                stream = new MemoryStream(package.GetAsByteArray());
             }
-
             stream.Position = 0;
             var fileName = $"DanhSachNhanVien_{DateTime.Now.ToString("dd-MM-yyyy")}.xlsx";
             return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",

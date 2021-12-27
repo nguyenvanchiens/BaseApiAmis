@@ -31,5 +31,6 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Repository
         /// <returns>Mã nhân viên</returns>
         /// CreateBy: NVChien(20/12/2021)
         string NewCodeEmployee();
+        
     }
 }

@@ -92,6 +92,11 @@ namespace MiSA.Fresher.Amis.Core.Service
             }
             return true;
         }
+
+        public bool ExportExcel()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

@@ -70,7 +70,7 @@ namespace MiSA.Fresher.Amis.Core.Entities
         /// CreateBy: NVChien(20/12/2021)
         /// 
         [NotEmpty]
-        [PropertyName("Mã phòng ban")]
+        [PropertyName("Đơn vị")]
         public Guid? DepartmentId { get; set; }
         /// <summary>
         /// Căn cước công dân
