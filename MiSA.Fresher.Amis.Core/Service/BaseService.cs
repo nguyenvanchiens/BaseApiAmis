@@ -135,7 +135,7 @@ namespace MiSA.Fresher.Amis.Core.Service
         }
         /// <summary>
         /// Người dùng có thể custom lại validate nếu cần
-        /// </summary>
+        /// </summary>p
         /// <param name="entity">Đối tượng</param>
         /// <returns></returns>
         /// NVChien(20/12/2021)

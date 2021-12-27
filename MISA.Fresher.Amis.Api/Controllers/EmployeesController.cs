@@ -4,6 +4,7 @@ using MiSA.Fresher.Amis.Core.Common;
 using MiSA.Fresher.Amis.Core.Entities;
 using MiSA.Fresher.Amis.Core.InterFace.Service;
 using OfficeOpenXml;
+using OfficeOpenXml.Style;
 
 namespace MISA.Fresher.Amis.Api.Controllers
 {
@@ -48,26 +49,11 @@ namespace MISA.Fresher.Amis.Api.Controllers
             var result = _employeeService.NewCodeEmployee();
             return Ok(result);
         }
-        [HttpGet("Export2")]
-        public IActionResult Export2()
-        {
-            var result = _employeeService.GetAll();
-            var stream = new MemoryStream();
-
-            using(var package = new ExcelPackage(stream))
-            {
-                var sheet = package.Workbook.Worksheets.Add("NhanVien");
-                // đổ dữ liệu vào sheet
-                sheet.Cells.LoadFromCollection(result, true);
-                //save
-                package.Save();
-            }
-
-            stream.Position = 0;
-            var fileName = $"NhanVien_{DateTime.Now.ToString("yyyyMMddHHmmss")}.xlsx";
-            return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                fileName);
-        }
+        /// <summary>
+        /// Xuất file excecl cho danh sách nhân viên
+        /// </summary>
+        /// <returns></returns>
+        /// CreatedBy: NVCHien(27/12/2021)
         [HttpGet("Export")]
         public IActionResult Export()
         {
@@ -92,6 +78,19 @@ namespace MISA.Fresher.Amis.Api.Controllers
                 int stt = 1;
                 foreach (var row in result)
                 {
+                    sheet.Cells[rowId, 1].AutoFitColumns(10, 10);
+                    for (int i = 1; i <= 9;i++)
+                    {
+                        // Thêm border cho cột
+                        sheet.Cells[rowId, i].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                        sheet.Cells[rowId, i].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                        sheet.Cells[rowId, i].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                        sheet.Cells[rowId, i].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                        // Thêm width vs height cho cột
+                        sheet.Cells[rowId, i+1].AutoFitColumns(20,20);
+                        sheet.Cells[rowId, i+1].Merge = true;
+                    }
+                    
                     sheet.Cells[rowId,1].Value = stt;
                     sheet.Cells[rowId, 2].Value = row.EmployeeCode;
                     sheet.Cells[rowId, 3].Value = row.EmployeeName;

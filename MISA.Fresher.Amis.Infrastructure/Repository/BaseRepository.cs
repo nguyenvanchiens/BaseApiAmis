@@ -112,7 +112,6 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
 
             // Khi thêm mới entityId đã được tạo mới
 
-
             var query = $"Select*from {_tableName} where {propertyName} = '{propertyValue}' and {_tableName}Id != '{entityId}'";
             var entityy = _dbConnection.QueryFirstOrDefault<TEntity>(query, commandType: CommandType.Text);
             return entityy;

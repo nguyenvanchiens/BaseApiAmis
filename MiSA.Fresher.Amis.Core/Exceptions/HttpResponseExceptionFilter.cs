@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using MiSA.Fresher.Amis.Core.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,12 @@ namespace MiSA.Fresher.Amis.Core.Exceptions
                     devMsg = Properties.VNResources.BadRequest,
                     userMgs = Properties.VNResources.ExceptionError,
                     data = httpResponseException.Value,
-                    status = 400,
+                    status = (int)Status.BadRequest,
                     moreInfo = ""
                 };
                 context.Result = new ObjectResult(result)
                 {
-                    StatusCode = 400
+                    StatusCode = (int)Status.BadRequest
                 };
 
                 context.ExceptionHandled = true;
@@ -37,14 +38,15 @@ namespace MiSA.Fresher.Amis.Core.Exceptions
             {
                 var result = new
                 {
-                    devMsg = Properties.ENResources.Internal_Server_Error,
+                    devMsg = Properties.VNResources.Internal_Server_Error,
                     userMgs = Properties.VNResources.ExceptionError,
                     data = DBNull.Value,
+                    status = (int)Status.Internal_Server_Error,
                     moreInfo = ""
                 };
                 context.Result = new ObjectResult(result)
                 {
-                    StatusCode = 500
+                    StatusCode = (int)Status.Internal_Server_Error,
                 };
 
                 context.ExceptionHandled = true;

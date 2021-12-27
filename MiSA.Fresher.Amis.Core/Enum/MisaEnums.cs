@@ -21,4 +21,15 @@ namespace MiSA.Fresher.Amis.Core.Enum
         /// </summary>
         Other = 2
     }
+    public enum Status
+    {
+        /// <summary>
+        /// Lỗi validate không hợp lệ
+        /// </summary>
+        BadRequest=400,
+        /// <summary>
+        /// Lỗi api
+        /// </summary>
+        Internal_Server_Error = 500
+    }
 }

@@ -12,11 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Properties\ENResources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ENResources.resx</DependentUpon>
-    </Compile>
     <Compile Update="Properties\VNResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -25,10 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Properties\ENResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ENResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Update="Properties\VNResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>VNResources.Designer.cs</LastGenOutput>
