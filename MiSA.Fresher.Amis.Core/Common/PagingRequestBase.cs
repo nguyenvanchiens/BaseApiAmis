@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiSA.Fresher.Amis.Core.Common
 {
-    public class PageRequestBase
+    public class PagingRequestBase
     {
         public int pageSize { get; set; }
         public int pageIndex { get; set; }

@@ -65,5 +65,19 @@ namespace MISA.Fresher.Amis.Api.Controllers
             }
            
         }
+        [HttpPost("DeleteMultiEntity")]
+        public IActionResult DeleteMultiEntity([FromBody] List<string> entityIds)
+        {
+            try
+            {
+                var result = _baseService.DeleteMultiEntity(entityIds);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
+        }
     }
 }

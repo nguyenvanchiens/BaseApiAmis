@@ -24,12 +24,12 @@ namespace MiSA.Fresher.Amis.Core.Exceptions
                     devMsg = Properties.VNResources.BadRequest,
                     userMgs = Properties.VNResources.ExceptionError,
                     data = httpResponseException.Value,
-                    status = (int)Status.BadRequest,
+                    status = (int)StatusError.BadRequest,
                     moreInfo = ""
                 };
                 context.Result = new ObjectResult(result)
                 {
-                    StatusCode = (int)Status.BadRequest
+                    StatusCode = (int)StatusError.BadRequest
                 };
 
                 context.ExceptionHandled = true;
@@ -41,12 +41,12 @@ namespace MiSA.Fresher.Amis.Core.Exceptions
                     devMsg = Properties.VNResources.Internal_Server_Error,
                     userMgs = Properties.VNResources.ExceptionError,
                     data = DBNull.Value,
-                    status = (int)Status.Internal_Server_Error,
+                    status = (int)StatusError.Internal_Server_Error,
                     moreInfo = ""
                 };
                 context.Result = new ObjectResult(result)
                 {
-                    StatusCode = (int)Status.Internal_Server_Error,
+                    StatusCode = (int)StatusError.Internal_Server_Error,
                 };
 
                 context.ExceptionHandled = true;

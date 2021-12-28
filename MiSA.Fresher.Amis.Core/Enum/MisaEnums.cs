@@ -21,7 +21,7 @@ namespace MiSA.Fresher.Amis.Core.Enum
         /// </summary>
         Other = 2
     }
-    public enum Status
+    public enum StatusError
     {
         /// <summary>
         /// Lỗi validate không hợp lệ

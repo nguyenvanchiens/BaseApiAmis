@@ -22,14 +22,7 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
 
         #endregion
         #region Method
-        public int DeleteMultiRecord(List<string> listId)
-        {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@listId", string.Join(',', listId)); 
-            var result = _dbConnection.Execute("Proc_DeleteMultipleRecordEmployee", param:parameters,commandType:CommandType.StoredProcedure);
-            return result;
-        }
-        public object GetPaging(PageRequestBase pageRequest)
+        public object GetPaging(PagingRequestBase pageRequest)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@keySearch", pageRequest.entityFilter);

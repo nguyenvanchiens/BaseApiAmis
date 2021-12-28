@@ -57,6 +57,13 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Repository
         /// <returns>trả về đối tượng thì sai, k thì đúng</returns>
         /// CreateBy: NVChien(20/12/2021)
         TEntity GetDuplicateProperty(Guid entityId, string propertyName, object propertyValue);
+        /// <summary>
+        /// Xóa danh sách các đối tượng
+        /// </summary>
+        /// <param name="entityIds">Danh sách id các đối tượng cần xóa</param>
+        /// <returns>Trả về số bản ghi được xóa</returns>
+        /// CreateBy:NVChien(20/12/2021)
+        int DeleteMultiEntity(List<string> entityIds);
         #endregion
     }
 }

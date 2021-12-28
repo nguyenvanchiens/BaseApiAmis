@@ -143,7 +143,12 @@ namespace MiSA.Fresher.Amis.Core.Service
         {
             return true;
         }
-       
+
+        public int DeleteMultiEntity(List<string> entityIds)
+        {
+            return _baseRepository.DeleteMultiEntity(entityIds);
+        }
+
         #endregion
     }
 }

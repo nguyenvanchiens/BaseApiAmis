@@ -16,7 +16,7 @@ namespace MISA.Fresher.Amis.Api.Controllers
             _employeeService = employeeService;
         }
         [HttpGet("GetAllPaging")]
-        public IActionResult GetAllPagings([FromQuery] PageRequestBase pageRequest)
+        public IActionResult GetAllPagings([FromQuery] PagingRequestBase pageRequest)
         {
             try
             {
@@ -27,21 +27,6 @@ namespace MISA.Fresher.Amis.Api.Controllers
             {
                 return BadRequest(ex.Message);
             }
-        }
-        [HttpPost("DeleteMulti")]
-        public IActionResult DeleteMulti([FromBody] List<string> listId)
-        {
-            try
-            {
-                var result = _employeeService.DeleteMultiRecord(listId);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            
-            
         }
         [HttpGet("NewCodeEmployee")]
         public IActionResult GetNewCode()
@@ -61,7 +46,7 @@ namespace MISA.Fresher.Amis.Api.Controllers
             ////Format Ctrl+A -> Home -> Format -> Column(with, height)
 
             var stream = new MemoryStream();
-            var result = _employeeService.GetAll();
+            var listEmployee = _employeeService.GetAll();
             var filePath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\MiSA.Fresher.Amis.Core\ExcelTemplate\Danh_sach_nhan_vien.xlsx"));
             FileInfo existingFile = new FileInfo(filePath);
             ExcelPackage.LicenseContext = LicenseContext.Commercial;
@@ -76,7 +61,7 @@ namespace MISA.Fresher.Amis.Api.Controllers
 
                 int rowId = 4;
                 int stt = 1;
-                foreach (var row in result)
+                foreach (var employee in listEmployee)
                 {
                     sheet.Cells[rowId, 1].AutoFitColumns(10, 10);
                     for (int i = 1; i <= 9;i++)
@@ -87,19 +72,19 @@ namespace MISA.Fresher.Amis.Api.Controllers
                         sheet.Cells[rowId, i].Style.Border.Right.Style = ExcelBorderStyle.Thin;
                         sheet.Cells[rowId, i].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
                         // Thêm width vs height cho cột
-                        sheet.Cells[rowId, i+1].AutoFitColumns(20,20);
+                        sheet.Cells[rowId, i+1].AutoFitColumns(20,30);
                         sheet.Cells[rowId, i+1].Merge = true;
                     }
                     
                     sheet.Cells[rowId,1].Value = stt;
-                    sheet.Cells[rowId, 2].Value = row.EmployeeCode;
-                    sheet.Cells[rowId, 3].Value = row.EmployeeName;
-                    sheet.Cells[rowId, 4].Value = row.GenderName;
-                    sheet.Cells[rowId, 5].Value = row.DateOfBirth;
-                    sheet.Cells[rowId, 6].Value = row.EmployeePosition;
-                    sheet.Cells[rowId, 7].Value = row.DepartmentName;
-                    sheet.Cells[rowId, 8].Value = row.BankAccountNumber;
-                    sheet.Cells[rowId, 9].Value = row.BankName;
+                    sheet.Cells[rowId, 2].Value = employee.EmployeeCode;
+                    sheet.Cells[rowId, 3].Value = employee.EmployeeName;
+                    sheet.Cells[rowId, 4].Value = employee.GenderName;
+                    sheet.Cells[rowId, 5].Value = employee.DateOfBirth;
+                    sheet.Cells[rowId, 6].Value = employee.EmployeePosition;
+                    sheet.Cells[rowId, 7].Value = employee.DepartmentName;
+                    sheet.Cells[rowId, 8].Value = employee.BankAccountNumber;
+                    sheet.Cells[rowId, 9].Value = employee.BankName;
                     stt++;
                     rowId++;
                 }

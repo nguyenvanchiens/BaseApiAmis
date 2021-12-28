@@ -18,13 +18,7 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Repository
         /// <param name="employeeFilter">Dữ liệu tìm kiếm(chứa ký tự nhập vào theo mã, tên hoặc số điện thoại)</param>
         /// <returns>Trả về danh sách với số bản ghi</returns>
         /// CreateBy: NVChien(20/12/2021)
-        object GetPaging(PageRequestBase pageRequest);
-        /// <summary>
-        /// Xóa danh sách nhân viên theo id
-        /// </summary>
-        /// <param name="listId">danh sách id</param>
-        /// <returns></returns>
-        int DeleteMultiRecord(List<string> listId);
+        object GetPaging(PagingRequestBase pageRequest);
         /// <summary>
         /// Tạo ra mã nhân viên mới
         /// </summary>

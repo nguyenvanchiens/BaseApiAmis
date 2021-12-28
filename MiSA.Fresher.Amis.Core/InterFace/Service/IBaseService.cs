@@ -48,6 +48,13 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Service
         /// <returns>Trả về số bản ghi bị ảnh hưởng</returns>
         /// CreateBy: NVChien(20/12/2021)
         int Delete(Guid entityId);
+        /// <summary>
+        /// Xóa danh sách các đối tượng
+        /// </summary>
+        /// <param name="entityIds">Danh sách id các đối tượng cần xóa</param>
+        /// <returns>Trả về số bản ghi được xóa</returns>
+        /// CreateBy:NVChien(20/12/2021)
+        int DeleteMultiEntity(List<string> entityIds);
         #endregion
 
     }

@@ -25,15 +25,11 @@ namespace MiSA.Fresher.Amis.Core.Service
 
         #endregion
         #region Method
-        public object GetPaging(PageRequestBase pageRequest)
+        public object GetPaging(PagingRequestBase pageRequest)
         {
             return _employeeRepository.GetPaging(pageRequest);
         }
         #endregion
-        public int DeleteMultiRecord(List<string> listId)
-        {
-            return _employeeRepository.DeleteMultiRecord(listId);
-        }
 
         public string NewCodeEmployee()
         {

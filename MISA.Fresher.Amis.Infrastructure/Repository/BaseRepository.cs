@@ -53,7 +53,7 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
 
         public int Insert(TEntity entity)
         {
-            var param = MappingType(entity);
+            DynamicParameters param = MappingType(entity);
             var rowAffect = _dbConnection.Execute($"Proc_Insert{_tableName}", param: param, commandType: CommandType.StoredProcedure);
             return rowAffect;
         }
@@ -115,6 +115,14 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
             var query = $"Select*from {_tableName} where {propertyName} = '{propertyValue}' and {_tableName}Id != '{entityId}'";
             var entityy = _dbConnection.QueryFirstOrDefault<TEntity>(query, commandType: CommandType.Text);
             return entityy;
+        }
+
+        public int DeleteMultiEntity(List<string> entityIds)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@listId", string.Join(',', entityIds));
+            var result = _dbConnection.Execute($"Proc_DeleteMultipleRecord{_tableName}", param: parameters, commandType: CommandType.StoredProcedure);
+            return result;
         }
         #endregion
     }
