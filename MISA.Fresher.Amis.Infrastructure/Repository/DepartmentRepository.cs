@@ -12,11 +12,13 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
 {
     public class DepartmentRepository:BaseRepository<Department>,IDepartmentRepository
     {
+        #region Contructor
         public DepartmentRepository(IConfiguration configuration):base(configuration)
         {
 
         }
-
+        #endregion
+        #region Method
         public IEnumerable<Department> FilterDepartment(string? filterName)
         {
             DynamicParameters dynamicParameters = new DynamicParameters();
@@ -24,5 +26,6 @@ namespace MISA.Fresher.Amis.Infrastructure.Repository
             var result = _dbConnection.Query<Department>("Proc_FilterDepartment",param:dynamicParameters,commandType:System.Data.CommandType.StoredProcedure);
             return result;
         }
+        #endregion
     }
 }

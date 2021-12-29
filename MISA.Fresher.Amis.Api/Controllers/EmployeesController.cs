@@ -10,11 +10,16 @@ namespace MISA.Fresher.Amis.Api.Controllers
 {
     public class EmployeesController : BaseController<Employee>
     {
+        #region Declaration
         IEmployeeService _employeeService;
+        #endregion
+        #region Contructor
         public EmployeesController(IEmployeeService employeeService):base(employeeService)
         {
             _employeeService = employeeService;
         }
+        #endregion
+        #region Method
         [HttpGet("GetAllPaging")]
         public IActionResult GetAllPagings([FromQuery] PagingRequestBase pageRequest)
         {
@@ -95,5 +100,6 @@ namespace MISA.Fresher.Amis.Api.Controllers
             return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 fileName);
         }
+        #endregion
     }
 }

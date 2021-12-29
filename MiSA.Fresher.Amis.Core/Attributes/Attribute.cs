@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiSA.Fresher.Amis.Core.Attributes
 {
+    #region Attribute
     /// <summary>
     /// Atribute cung cấp cho các property bắt buộc nhập - sử dụng để phục vụ cho validate chung của các đối tượng khác nhau
     /// </summary>
@@ -64,4 +65,5 @@ namespace MiSA.Fresher.Amis.Core.Attributes
     {
 
     }
+    #endregion
 }

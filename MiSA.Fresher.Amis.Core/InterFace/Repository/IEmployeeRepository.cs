@@ -10,6 +10,7 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Repository
 {
     public interface IEmployeeRepository:IBaseRepository<Employee>
     {
+        #region Method
         /// <summary>
         /// Phân trang cho nhân viên
         /// </summary>
@@ -25,6 +26,7 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Repository
         /// <returns>Mã nhân viên</returns>
         /// CreateBy: NVChien(20/12/2021)
         string NewCodeEmployee();
-        
+        #endregion
+
     }
 }

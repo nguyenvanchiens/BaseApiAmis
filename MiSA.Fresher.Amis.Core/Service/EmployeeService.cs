@@ -14,11 +14,11 @@ namespace MiSA.Fresher.Amis.Core.Service
 {
     public class EmployeeService : BaseService<Employee>, IEmployeeService
     {
-        #region initialization
+        #region Declaration
         IEmployeeRepository _employeeRepository;
         #endregion
         #region Contructor
-        public EmployeeService(IEmployeeRepository employeeRepository):base(employeeRepository)
+        public EmployeeService(IEmployeeRepository employeeRepository) : base(employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
@@ -29,13 +29,12 @@ namespace MiSA.Fresher.Amis.Core.Service
         {
             return _employeeRepository.GetPaging(pageRequest);
         }
-        #endregion
-
         public string NewCodeEmployee()
         {
             return _employeeRepository.NewCodeEmployee();
         }
-        #region Design
+        #endregion
+        #region ValidateCustom
         /// <summary>
         /// Custom lại validate bên hàm cha nếu thêm thuộc tính mới
         /// </summary>
@@ -44,20 +43,24 @@ namespace MiSA.Fresher.Amis.Core.Service
         protected override bool ValidateObjectCustom(Employee entity)
         {
             List<string> errorMsg = new List<string> { };
-            // Lấy ra trường muốn kiểm tra tồn tại
+            // Lấy ra tất cả các property của employee
             var properties = typeof(Employee).GetProperties();
             foreach (var property in properties)
             {
+                // Lấy ra value của property
                 var propertyValue = property.GetValue(entity);
-                // Lấy ra các propertyName
+                // Lấy ra propertyName
                 var propertyNameOriginal = property.Name;
-                var propertyNames = property.GetCustomAttributes(typeof(PropertyName), true);
-                if (propertyNames.Length > 0)
-                {
-                    propertyNameOriginal = ((PropertyName)propertyNames[0]).Name;
-                }
+                // Lấy ra attribute PropertyName nếu property đó có khai báo
+                var propertyDisplay = property.GetCustomAttributes(typeof(PropertyName), true);
+                // Lấy ra attribute Duplicate nếu property đó có khai báo
                 var propertyDuplicate = property.GetCustomAttributes(typeof(CheckDuplicate), true);
-                
+                // Lấy ra attribute Date nếu property đó có khai báo
+                var checkDate = property.GetCustomAttributes(typeof(checkDate), true);
+                if (propertyDisplay.Length > 0)
+                {
+                    propertyNameOriginal = ((PropertyName)propertyDisplay[0]).Name;
+                }
                 if (propertyDuplicate.Length > 0)
                 {
                     if (propertyValue != null)
@@ -68,9 +71,8 @@ namespace MiSA.Fresher.Amis.Core.Service
                             errorMsg.Add($"Dữ liệu {propertyNameOriginal} đã tồn tại");
                         }
                     }
-                   
+
                 }
-                var checkDate = property.GetCustomAttributes(typeof(checkDate), true);
                 if (checkDate.Length > 0)
                 {
                     if (propertyValue != null)
@@ -79,7 +81,7 @@ namespace MiSA.Fresher.Amis.Core.Service
                         {
                             errorMsg.Add($"{propertyNameOriginal} lớn không thể lớn hơn ngày hiện tại");
                         }
-                    }               
+                    }
                 }
             }
             if (errorMsg.Count > 0)
@@ -87,11 +89,6 @@ namespace MiSA.Fresher.Amis.Core.Service
                 throw new HttpResponseException(errorMsg);
             }
             return true;
-        }
-
-        public bool ExportExcel()
-        {
-            throw new NotImplementedException();
         }
         #endregion
     }

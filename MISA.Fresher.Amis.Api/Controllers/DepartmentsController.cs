@@ -8,11 +8,16 @@ namespace MISA.Fresher.Amis.Api.Controllers
 {
     public class DepartmentsController : BaseController<Department>
     {
+        #region Declaration
         private IDepartmentService _departmentsService;
+        #endregion
+        #region Contructor
         public DepartmentsController(IDepartmentService departmentService):base(departmentService)
         {
             _departmentsService = departmentService;
         }
+        #endregion
+        #region Method
         [HttpGet("filter")]
         public IActionResult Filter([FromQuery]string? filter)
         {
@@ -27,5 +32,6 @@ namespace MISA.Fresher.Amis.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        #endregion
     }
 }

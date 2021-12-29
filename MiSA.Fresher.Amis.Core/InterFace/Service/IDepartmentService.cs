@@ -9,6 +9,7 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Service
 {
     public interface IDepartmentService: IBaseService<Department>
     {
+        #region Method
         /// <summary>
         /// Lấy ra phòng ban dựa vào filterName
         /// </summary>
@@ -16,5 +17,6 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Service
         /// <returns>Trả về phòng ban tương ứng</returns>
         /// CreateBy:NvChien(26/12/2021)
         IEnumerable<Department> FilterDepartment(string? filterName);
+        #endregion
     }
 }

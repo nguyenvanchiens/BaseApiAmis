@@ -51,10 +51,10 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Service
         /// <summary>
         /// Xóa danh sách các đối tượng
         /// </summary>
-        /// <param name="entityIds">Danh sách id các đối tượng cần xóa</param>
+        /// <param name="listId">Danh sách id các đối tượng cần xóa</param>
         /// <returns>Trả về số bản ghi được xóa</returns>
         /// CreateBy:NVChien(20/12/2021)
-        int DeleteMultiEntity(List<string> entityIds);
+        int DeleteMulti(List<string> listId);
         #endregion
 
     }

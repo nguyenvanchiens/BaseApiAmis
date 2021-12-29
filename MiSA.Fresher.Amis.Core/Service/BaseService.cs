@@ -14,7 +14,7 @@ namespace MiSA.Fresher.Amis.Core.Service
 {
     public class BaseService<TEntity> : IBaseService<TEntity>
     {
-        #region initialization
+        #region Declaration
         IBaseRepository<TEntity> _baseRepository;
         #endregion
         #region Contructor
@@ -75,6 +75,10 @@ namespace MiSA.Fresher.Amis.Core.Service
                 return rowAffect;
             }
             return null;
+        }
+        public int DeleteMulti(List<string> listId)
+        {
+            return _baseRepository.DeleteMulti(listId);
         }
         #endregion
         #region Validate
@@ -144,10 +148,7 @@ namespace MiSA.Fresher.Amis.Core.Service
             return true;
         }
 
-        public int DeleteMultiEntity(List<string> entityIds)
-        {
-            return _baseRepository.DeleteMultiEntity(entityIds);
-        }
+       
 
         #endregion
     }

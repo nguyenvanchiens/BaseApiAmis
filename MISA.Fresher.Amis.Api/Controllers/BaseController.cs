@@ -8,11 +8,16 @@ namespace MISA.Fresher.Amis.Api.Controllers
     [ApiController]
     public class BaseController<TEntity> : ControllerBase
     {
+        #region Declaration
         private readonly IBaseService<TEntity> _baseService;
+        #endregion
+        #region Contructor
         public BaseController(IBaseService<TEntity> baseService)
         {
             _baseService = baseService;
         }
+        #endregion
+        #region Method
         [HttpGet]
         public IActionResult Get()
         {
@@ -66,11 +71,11 @@ namespace MISA.Fresher.Amis.Api.Controllers
            
         }
         [HttpPost("DeleteMultiEntity")]
-        public IActionResult DeleteMultiEntity([FromBody] List<string> entityIds)
+        public IActionResult DeleteMultiEntity([FromBody] List<string> listId)
         {
             try
             {
-                var result = _baseService.DeleteMultiEntity(entityIds);
+                var result = _baseService.DeleteMulti(listId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -79,5 +84,6 @@ namespace MISA.Fresher.Amis.Api.Controllers
                 return BadRequest(ex);
             }
         }
+        #endregion
     }
 }

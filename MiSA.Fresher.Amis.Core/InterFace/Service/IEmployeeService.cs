@@ -10,6 +10,7 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Service
 {
     public interface IEmployeeService:IBaseService<Employee>
     {
+        #region
         /// <summary>
         /// Phân trang cho nhân viên
         /// </summary>
@@ -19,7 +20,12 @@ namespace MiSA.Fresher.Amis.Core.InterFace.Service
         /// <returns>Trả về danh sách với số bản ghi</returns>
         /// CreateBy: NVChien(20/12/2021)
         object GetPaging(PagingRequestBase pageRequest);
+        /// <summary>
+        /// Lấy ra mã nhân viên mới
+        /// </summary>
+        /// <returns>Trả về mã mới</returns>
+        /// CreateBy: NVChien(20/12/2021)
         string NewCodeEmployee();
-        bool ExportExcel();
+        #endregion
     }
 }

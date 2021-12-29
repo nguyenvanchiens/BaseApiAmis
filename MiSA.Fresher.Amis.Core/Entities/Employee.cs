@@ -11,6 +11,7 @@ namespace MiSA.Fresher.Amis.Core.Entities
 {
     public class Employee
     {
+        #region Property
         /// <summary>
         /// Id nhân viên
         /// </summary>
@@ -59,7 +60,7 @@ namespace MiSA.Fresher.Amis.Core.Entities
                         return "Nam";
                     case Gender.Other:
                         return "Khác";
-                        default: return null;
+                        default: return "";
                 }
             }
 
@@ -161,5 +162,6 @@ namespace MiSA.Fresher.Amis.Core.Entities
         /// Ngày sửa
         /// </summary>
         public DateTime? ModifiedDate  { get; set; }
+        #endregion
     }
 }

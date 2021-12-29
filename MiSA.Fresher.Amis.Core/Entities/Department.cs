@@ -9,6 +9,7 @@ namespace MiSA.Fresher.Amis.Core.Entities
 {
     public class Department
     {
+        #region Property
         /// <summary>
         /// Id phòng ban
         /// </summary>
@@ -46,5 +47,6 @@ namespace MiSA.Fresher.Amis.Core.Entities
         /// Ngày sửa
         /// </summary>
         public DateTime? ModifiedDate { get; set; }
+        #endregion
     }
 }
