@@ -101,10 +101,15 @@ namespace MiSA.Fresher.Amis.Core.Service
                 var propertyNameOriginal = property.Name;
                 // Lấy ra các propertyName
                 var propertyNames = property.GetCustomAttributes(typeof(PropertyName), true);
-                // lấy ra các trường không được trống
-                var proNotEmptys = property.GetCustomAttributes(typeof(NotEmpty), true);
+                // lấy ra property có attribute NotEmpty
+                var propertyNotEmptys = property.GetCustomAttributes(typeof(NotEmpty), true);
                 // Lấy ra độ dài của kí tự của property
-                var propertyMaxLength = property.GetCustomAttributes(typeof(MaxLength), true);               
+                var propertyMaxLength = property.GetCustomAttributes(typeof(MaxLength), true);
+                // Lấy ra attribute Duplicate nếu property đó có khai báo
+                var propertyDuplicate = property.GetCustomAttributes(typeof(CheckDuplicate), true);
+                // Lấy ra attribute Date nếu property đó có khai báo
+                var propertyCheckDate = property.GetCustomAttributes(typeof(checkDate), true);
+
                 // Xem các property đó có có tồn tại PropertyName không
                 if (propertyNames.Length > 0)
                 {
@@ -112,12 +117,12 @@ namespace MiSA.Fresher.Amis.Core.Service
                     propertyNameOriginal = ((PropertyName)propertyNames[0]).Name;
                 }
                 // Xem các property đó có phải là property có phải thuộc tính bắt buộc nhập
-                if (proNotEmptys.Length > 0)
+                if (propertyNotEmptys.Length > 0)
                 {
                     //3. nếu thông tin bắt buộc nhập hiển thị cảnh báo hoặc đánh giấu trang thái không hợp lệ
                     if (propertyValue == null ||string.IsNullOrEmpty(propertyValue.ToString()))
                     {
-                        errorMsg.Add($"Không được phép để trống {propertyNameOriginal}");
+                        errorMsg.Add(String.Format(Properties.VNResources.Check_NotEmpty,propertyNameOriginal));
                     }
                 }
                 if (propertyMaxLength.Length > 0)
@@ -126,7 +131,28 @@ namespace MiSA.Fresher.Amis.Core.Service
                     //3. nếu thông tin bắt buộc nhập hiển thị cảnh báo hoặc đánh giấu trang thái không hợp lệ
                     if (propertyValue!=null&&((string)propertyValue).Trim().Length > length)
                     {
-                        errorMsg.Add($"Thông tin {propertyNameOriginal} không được phép dài quá {length} kí tự");
+                        errorMsg.Add(String.Format(Properties.VNResources.Check_Maxlength,propertyNameOriginal,length));
+                    }
+                }
+                if(propertyDuplicate.Length > 0)
+                {
+                    if (propertyValue != null)
+                    {
+                        var checkDuplicate = _baseRepository.GetDuplicateProperty(entity, property.Name, propertyValue);
+                        if (checkDuplicate != null)
+                        {
+                            errorMsg.Add(String.Format(Properties.VNResources.Check_Duplicate,propertyNameOriginal));
+                        }
+                    }
+                }
+                if(propertyCheckDate.Length > 0)
+                {
+                    if(propertyValue != null)
+                    {
+                        if((DateTime)propertyValue>DateTime.Now)
+                        {
+                            errorMsg.Add(string.Format(Properties.VNResources.Check_Date_Time, propertyNameOriginal));
+                        }
                     }
                 }
                

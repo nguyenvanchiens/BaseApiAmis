@@ -55,11 +55,11 @@ namespace MiSA.Fresher.Amis.Core.Entities
                 switch (Gender)
                 {
                     case Gender.Male:
-                        return "Nữ";
+                        return Properties.VNResources.Gender_Male;
                         case Gender.Female:
-                        return "Nam";
+                        return Properties.VNResources.Gender_Female;
                     case Gender.Other:
-                        return "Khác";
+                        return Properties.VNResources.Gender_Other;
                         default: return "";
                 }
             }

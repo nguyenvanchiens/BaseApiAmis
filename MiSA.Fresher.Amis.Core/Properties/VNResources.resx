@@ -120,6 +120,18 @@
   <data name="BadRequest" xml:space="preserve">
     <value>Dữ liệu đầu vào không hợp lệ</value>
   </data>
+  <data name="Check_Date_Time" xml:space="preserve">
+    <value>{0} không được lớn hơn ngày hiện tại</value>
+  </data>
+  <data name="Check_Duplicate" xml:space="preserve">
+    <value>Dữ liệu {0} đã tồn tại</value>
+  </data>
+  <data name="Check_Maxlength" xml:space="preserve">
+    <value>Thông tin {0} không được phép dài quá {1} kí tự</value>
+  </data>
+  <data name="Check_NotEmpty" xml:space="preserve">
+    <value>Không được phép để trống {0}</value>
+  </data>
   <data name="ExceptionError" xml:space="preserve">
     <value>Có lỗi xảy ra vui lòng liên hệ MISA để được trợ giúp</value>
   </data>
@@ -128,6 +140,9 @@
   </data>
   <data name="Gender_Male" xml:space="preserve">
     <value>Nam</value>
+  </data>
+  <data name="Gender_Other" xml:space="preserve">
+    <value>Khác</value>
   </data>
   <data name="Internal_Server_Error" xml:space="preserve">
     <value>Api xảy ra lỗi</value>

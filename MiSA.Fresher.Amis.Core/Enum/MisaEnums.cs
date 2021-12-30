@@ -11,11 +11,11 @@ namespace MiSA.Fresher.Amis.Core.Enum
         /// <summary>
         /// Nữ
         /// </summary>
-        Male = 0,
+        Male = 1,
         /// <summary>
         /// Nam
         /// </summary>
-        Female = 1,
+        Female = 0,
         /// <summary>
         /// Khác
         /// </summary>

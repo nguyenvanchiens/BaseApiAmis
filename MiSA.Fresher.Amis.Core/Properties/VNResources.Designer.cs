@@ -70,6 +70,42 @@ namespace MiSA.Fresher.Amis.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} không được lớn hơn ngày hiện tại.
+        /// </summary>
+        public static string Check_Date_Time {
+            get {
+                return ResourceManager.GetString("Check_Date_Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dữ liệu {0} đã tồn tại.
+        /// </summary>
+        public static string Check_Duplicate {
+            get {
+                return ResourceManager.GetString("Check_Duplicate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thông tin {0} không được phép dài quá {1} kí tự.
+        /// </summary>
+        public static string Check_Maxlength {
+            get {
+                return ResourceManager.GetString("Check_Maxlength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Không được phép để trống {0}.
+        /// </summary>
+        public static string Check_NotEmpty {
+            get {
+                return ResourceManager.GetString("Check_NotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Có lỗi xảy ra vui lòng liên hệ MISA để được trợ giúp.
         /// </summary>
         public static string ExceptionError {
@@ -93,6 +129,15 @@ namespace MiSA.Fresher.Amis.Core.Properties {
         public static string Gender_Male {
             get {
                 return ResourceManager.GetString("Gender_Male", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Khác.
+        /// </summary>
+        public static string Gender_Other {
+            get {
+                return ResourceManager.GetString("Gender_Other", resourceCulture);
             }
         }
         
